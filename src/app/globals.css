@@ -1,64 +1,65 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* WonderWorld Design System
-   Primary colors: Deep blue for navigation, warm gold for accents
-   Clean, modern interface with emphasis on stunning photography
+/* Minimalistic White Theme Design System
+   Pure white backgrounds with subtle grays for depth
+   Clean typography with generous spacing
+   Minimal accents for a refined, elegant aesthetic
 */
 
 :root {
-  /* Font System */
+  /* Font System - Single clean font for minimalism */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  /* Color System - WonderWorld Theme */
+  /* Color System - Minimalistic White Theme */
   --background: 0 0% 100%;
-  --foreground: 220 20% 20%;
+  --foreground: 0 0% 10%;
 
   --card: 0 0% 100%;
-  --card-foreground: 220 20% 20%;
+  --card-foreground: 0 0% 10%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 220 20% 20%;
+  --popover-foreground: 0 0% 10%;
 
-  /* Deep Blue Navigation */
-  --primary: 220 70% 35%;
+  /* Subtle Gray Primary */
+  --primary: 0 0% 20%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 30% 96%;
-  --secondary-foreground: 220 70% 35%;
+  --secondary: 0 0% 98%;
+  --secondary-foreground: 0 0% 20%;
 
-  --muted: 210 30% 96%;
-  --muted-foreground: 220 15% 55%;
+  --muted: 0 0% 97%;
+  --muted-foreground: 0 0% 45%;
 
-  /* Warm Gold Accent */
-  --accent: 40 85% 55%;
-  --accent-foreground: 220 20% 20%;
+  /* Minimal Black Accent */
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84.2% 60.2%;
+  --destructive: 0 70% 50%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 220 20% 90%;
-  --input: 220 20% 90%;
-  --ring: 220 70% 35%;
+  --border: 0 0% 93%;
+  --input: 0 0% 95%;
+  --ring: 0 0% 20%;
 
-  /* Border Radius for cards and components */
-  --radius: 0.75rem;
+  /* Minimal Border Radius */
+  --radius: 0.5rem;
 
-  --sidebar-background: 0 0% 98%;
-  --sidebar-foreground: 220 20% 30%;
-  --sidebar-primary: 220 70% 35%;
+  --sidebar-background: 0 0% 99%;
+  --sidebar-foreground: 0 0% 15%;
+  --sidebar-primary: 0 0% 20%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 210 30% 96%;
-  --sidebar-accent-foreground: 220 70% 35%;
-  --sidebar-border: 220 20% 90%;
-  --sidebar-ring: 220 70% 35%;
+  --sidebar-accent: 0 0% 98%;
+  --sidebar-accent-foreground: 0 0% 20%;
+  --sidebar-border: 0 0% 93%;
+  --sidebar-ring: 0 0% 20%;
 
-  /* Shadow System */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* Shadow System - Very Subtle */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 2px 4px 0 rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 4px 8px 0 rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 8px 16px 0 rgba(0, 0, 0, 0.08);
 }
 
 .dark {
@@ -190,62 +191,63 @@ body {
   color: hsl(var(--foreground));
 }
 
-/* Typography System */
+/* Typography System - Minimalist */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 600;
+  line-height: 1.3;
   margin-top: 0;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   color: hsl(var(--foreground));
-}
-
-h1 {
-  font-size: 3rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-h2 {
-  font-size: 2.25rem;
-  font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-h3 {
-  font-size: 1.875rem;
-  font-weight: 700;
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
 }
 
-h4 {
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h3 {
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-h5 {
+h4 {
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 1.125rem;
+  font-weight: 500;
 }
 
 h6 {
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 p {
   margin-top: 0;
   margin-bottom: 1rem;
-  line-height: 1.7;
+  line-height: 1.65;
+  font-weight: 400;
+  color: hsl(var(--muted-foreground));
 }
 
 a {
-  color: hsl(var(--primary));
+  color: hsl(var(--foreground));
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
 a:hover {
-  color: hsl(var(--accent));
+  opacity: 0.7;
 }
 
 strong {
@@ -284,16 +286,16 @@ input:focus, textarea:focus, select:focus {
 
 /* Utility Classes */
 .shadow-card {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .shadow-hover {
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .shadow-hover:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
 }
 
 /* Responsive Utilities */
@@ -303,11 +305,11 @@ input:focus, textarea:focus, select:focus {
   }
 
   h2 {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 

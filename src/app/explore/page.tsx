@@ -30,31 +30,28 @@ export default function ExplorePage() {
 
   return (
     <>
-      <div className="min-h-screen bg-background pb-24">
+      <div className="min-h-screen bg-white pb-24">
         {/* Header */}
         <header className="border-b border-border bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-8">
-            <div className="mb-6 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Compass className="h-8 w-8 text-primary" />
-                <div>
-                  <h1 className="text-3xl font-bold">Explore</h1>
-                  <p className="text-sm text-muted-foreground">
-                    Browse wonders by category
-                  </p>
-                </div>
+          <div className="mx-auto max-w-7xl px-6 py-8">
+            <div className="mb-8 flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-semibold mb-1">Explore</h1>
+                <p className="text-sm text-muted-foreground font-light">
+                  Browse wonders by category
+                </p>
               </div>
               <button
                 onClick={getRandomWonder}
-                className="flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 font-medium text-accent-foreground shadow-md transition-all hover:scale-105"
+                className="flex items-center gap-2 rounded-lg border border-border bg-white px-4 py-2.5 text-sm font-light transition-all hover:bg-muted"
               >
-                <Shuffle className="h-5 w-5" />
+                <Shuffle className="h-4 w-4" />
                 <span className="hidden sm:inline">Random</span>
               </button>
             </div>
 
             {/* Category Cards */}
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {categories.map((category) => {
                 const categoryWonders = wondersData.filter(
                   (w) => w.category === category
@@ -67,30 +64,30 @@ export default function ExplorePage() {
                     onClick={() =>
                       setSelectedCategory(isSelected ? null : category)
                     }
-                    className={`group relative overflow-hidden rounded-xl border-2 transition-all ${
+                    className={`group relative overflow-hidden rounded-lg border transition-all ${
                       isSelected
-                        ? 'border-primary shadow-lg scale-105'
-                        : 'border-transparent hover:border-primary/50 hover:shadow-md'
+                        ? 'border-foreground shadow-md'
+                        : 'border-border hover:border-foreground/30'
                     }`}
                   >
                     <div className="relative aspect-[16/9] overflow-hidden">
                       <img
                         src={categoryWonders[0].images[0]}
                         alt={category}
-                        className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                      <h3 className="mb-1 text-lg font-bold">{category}</h3>
-                      <p className="text-sm opacity-90">
+                    <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                      <h3 className="mb-1 text-base font-medium">{category}</h3>
+                      <p className="text-xs font-light opacity-90">
                         {categoryWonders.length}{' '}
                         {categoryWonders.length === 1 ? 'wonder' : 'wonders'}
                       </p>
                     </div>
                     {isSelected && (
-                      <div className="absolute right-3 top-3 rounded-full bg-primary p-2">
-                        <Compass className="h-5 w-5 text-primary-foreground" />
+                      <div className="absolute right-3 top-3 rounded-full bg-white border border-border p-2">
+                        <Compass className="h-4 w-4 text-foreground" />
                       </div>
                     )}
                   </button>
@@ -101,20 +98,20 @@ export default function ExplorePage() {
         </header>
 
         {/* Main Content */}
-        <main className="mx-auto max-w-7xl px-4 py-8">
+        <main className="mx-auto max-w-7xl px-6 py-10">
           {selectedCategory && (
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-2xl font-bold">{selectedCategory}</h2>
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="text-lg font-medium">{selectedCategory}</h2>
               <button
                 onClick={() => setSelectedCategory(null)}
-                className="text-sm text-primary hover:underline"
+                className="text-sm text-foreground hover:opacity-70 transition-opacity font-light"
               >
                 View all categories
               </button>
             </div>
           )}
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {filteredWonders.map((wonder) => (
               <WonderCard
                 key={wonder.id}

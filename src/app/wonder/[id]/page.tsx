@@ -58,28 +58,28 @@ export default function WonderDetailPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-background pb-24">
+      <div className="min-h-screen bg-white pb-24">
         {/* Header */}
-        <header className="sticky top-0 z-30 border-b border-border bg-white/95 backdrop-blur-sm">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+        <header className="sticky top-0 z-30 border-b border-border bg-white">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
             <button
               onClick={() => router.back()}
-              className="flex items-center gap-2 text-primary hover:text-accent transition-colors"
+              className="flex items-center gap-2 text-foreground hover:opacity-70 transition-opacity"
             >
               <ArrowLeft className="h-5 w-5" />
-              <span className="font-medium">Back</span>
+              <span className="text-sm font-light">Back</span>
             </button>
             <div className="flex gap-2">
               <button
                 onClick={handleShare}
-                className="rounded-full bg-secondary p-2.5 transition-all hover:bg-accent hover:scale-110"
+                className="rounded-full border border-border bg-white p-2.5 transition-all hover:bg-muted"
                 aria-label="Share"
               >
-                <Share2 className="h-5 w-5 text-secondary-foreground" />
+                <Share2 className="h-4 w-4 text-foreground" />
               </button>
               <button
                 onClick={() => toggleFavorite(wonder.id)}
-                className="rounded-full bg-secondary p-2.5 transition-all hover:bg-accent hover:scale-110"
+                className="rounded-full border border-border bg-white p-2.5 transition-all hover:bg-muted"
                 aria-label={
                   isLoaded && isFavorite(wonder.id)
                     ? 'Remove from favorites'
@@ -87,10 +87,10 @@ export default function WonderDetailPage() {
                 }
               >
                 <Heart
-                  className={`h-5 w-5 transition-colors ${
+                  className={`h-4 w-4 transition-colors ${
                     isLoaded && isFavorite(wonder.id)
-                      ? 'fill-accent text-accent'
-                      : 'text-secondary-foreground'
+                      ? 'fill-foreground text-foreground'
+                      : 'text-muted-foreground'
                   }`}
                 />
               </button>
@@ -99,9 +99,9 @@ export default function WonderDetailPage() {
         </header>
 
         {/* Main Content */}
-        <main className="mx-auto max-w-7xl px-4 py-8">
+        <main className="mx-auto max-w-7xl px-6 py-10">
           {/* Photo Gallery */}
-          <div className="mb-8">
+          <div className="mb-10">
             <PhotoGallery
               images={wonder.images}
               alt={wonder.name}
@@ -110,37 +110,37 @@ export default function WonderDetailPage() {
           </div>
 
           {/* Title and Location */}
-          <div className="mb-8">
-            <div className="mb-2 flex items-center gap-2">
-              <span className="rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
+          <div className="mb-10">
+            <div className="mb-3 flex items-center gap-2">
+              <span className="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">
                 {wonder.category}
               </span>
             </div>
-            <h1 className="mb-3 text-4xl font-bold">{wonder.name}</h1>
+            <h1 className="mb-4 text-3xl font-semibold">{wonder.name}</h1>
             <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="h-5 w-5" />
-              <span className="text-lg">
+              <MapPin className="h-4 w-4" />
+              <span className="text-base font-light">
                 {wonder.location}, {wonder.country}
               </span>
             </div>
           </div>
 
           {/* Description */}
-          <section className="mb-8">
-            <p className="text-lg leading-relaxed">{wonder.longDescription}</p>
+          <section className="mb-10">
+            <p className="text-base leading-relaxed text-muted-foreground font-light">{wonder.longDescription}</p>
           </section>
 
           {/* Best Visiting Months */}
-          <section className="mb-8 rounded-xl bg-secondary p-6">
-            <div className="mb-3 flex items-center gap-2">
-              <Calendar className="h-5 w-5 text-primary" />
-              <h2 className="text-xl font-semibold">Best Time to Visit</h2>
+          <section className="mb-10 rounded-lg border border-border bg-white p-6">
+            <div className="mb-4 flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-foreground" />
+              <h2 className="text-base font-medium">Best Time to Visit</h2>
             </div>
             <div className="flex flex-wrap gap-2">
               {wonder.bestVisitingMonths.map((month) => (
                 <span
                   key={month}
-                  className="rounded-lg bg-white px-4 py-2 text-sm font-medium shadow-sm"
+                  className="rounded-full border border-border bg-muted px-4 py-2 text-sm font-light"
                 >
                   {month}
                 </span>
@@ -149,21 +149,20 @@ export default function WonderDetailPage() {
           </section>
 
           {/* Interesting Facts */}
-          <section className="mb-8">
-            <div className="mb-4 flex items-center gap-2">
-              <Sparkles className="h-6 w-6 text-accent" />
-              <h2 className="text-2xl font-semibold">Fascinating Facts</h2>
+          <section className="mb-10">
+            <div className="mb-5 flex items-center gap-2">
+              <h2 className="text-lg font-medium">Fascinating Facts</h2>
             </div>
             <div className="space-y-3">
               {wonder.interestingFacts.map((fact, index) => (
                 <div
                   key={index}
-                  className="flex gap-3 rounded-lg bg-secondary p-4"
+                  className="flex gap-3 rounded-lg border border-border bg-white p-5"
                 >
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-accent text-xs font-bold text-accent-foreground">
+                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-foreground text-xs font-medium text-white">
                     {index + 1}
                   </span>
-                  <p className="text-base leading-relaxed">{fact}</p>
+                  <p className="text-sm leading-relaxed text-muted-foreground font-light">{fact}</p>
                 </div>
               ))}
             </div>
@@ -171,13 +170,13 @@ export default function WonderDetailPage() {
 
           {/* Historical Timeline */}
           {wonder.historicalTimeline && wonder.historicalTimeline.length > 0 && (
-            <section className="mb-8">
-              <h2 className="mb-4 text-2xl font-semibold">Historical Timeline</h2>
+            <section className="mb-10">
+              <h2 className="mb-5 text-lg font-medium">Historical Timeline</h2>
               <div className="space-y-4">
                 {wonder.historicalTimeline.map((event, index) => (
                   <div key={index} className="flex gap-4">
                     <div className="flex flex-col items-center">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground text-xs font-medium text-white">
                         {index + 1}
                       </div>
                       {index < wonder.historicalTimeline!.length - 1 && (
@@ -185,10 +184,10 @@ export default function WonderDetailPage() {
                       )}
                     </div>
                     <div className="flex-1 pb-8">
-                      <div className="mb-1 inline-block rounded bg-accent/20 px-3 py-1 text-sm font-bold text-accent-foreground">
+                      <div className="mb-2 inline-block rounded-full border border-border px-3 py-1 text-xs font-medium">
                         {event.year}
                       </div>
-                      <p className="text-base leading-relaxed">{event.event}</p>
+                      <p className="text-sm leading-relaxed text-muted-foreground font-light">{event.event}</p>
                     </div>
                   </div>
                 ))}
@@ -199,26 +198,26 @@ export default function WonderDetailPage() {
           {/* Related Wonders */}
           {relatedWonders.length > 0 && (
             <section>
-              <h2 className="mb-4 text-2xl font-semibold">You Might Also Like</h2>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <h2 className="mb-6 text-lg font-medium">You Might Also Like</h2>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {relatedWonders.map((related) => (
                   <Link
                     key={related.id}
                     href={`/wonder/${related.id}`}
-                    className="group overflow-hidden rounded-lg border border-border bg-white shadow-sm hover:shadow-md transition-all"
+                    className="group overflow-hidden rounded-lg border border-border bg-white transition-all hover:shadow-sm"
                   >
                     <div className="relative aspect-video overflow-hidden">
                       <img
                         src={related.images[0]}
                         alt={related.name}
-                        className="h-full w-full object-cover transition-transform group-hover:scale-110"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
-                    <div className="p-3">
-                      <h3 className="mb-1 font-semibold line-clamp-1">
+                    <div className="p-4">
+                      <h3 className="mb-1 text-sm font-medium line-clamp-1">
                         {related.name}
                       </h3>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs text-muted-foreground font-light">
                         {related.location}
                       </p>
                     </div>
@@ -235,7 +234,7 @@ export default function WonderDetailPage() {
       {/* Share Toast */}
       {showShareToast && (
         <div className="fixed bottom-24 left-1/2 z-50 -translate-x-1/2 animate-in fade-in slide-in-from-bottom-4">
-          <div className="rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-lg">
+          <div className="rounded-lg border border-border bg-white px-6 py-3 text-sm font-light shadow-lg">
             Link copied to clipboard!
           </div>
         </div>

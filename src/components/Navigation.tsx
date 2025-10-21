@@ -27,8 +27,8 @@ export function Navigation() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-white shadow-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-around px-4 py-3">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-around px-6 py-4">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const Icon = item.icon;
@@ -38,21 +38,21 @@ export function Navigation() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex flex-col items-center gap-1 rounded-lg px-6 py-2 transition-all',
+                'flex flex-col items-center gap-1.5 rounded-lg px-6 py-2 transition-all',
                 isActive
-                  ? 'text-primary'
-                  : 'text-muted-foreground hover:text-primary'
+                  ? 'text-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
               )}
             >
               <Icon
                 className={cn(
-                  'h-6 w-6 transition-all',
-                  isActive && 'scale-110'
+                  'h-5 w-5 transition-all',
+                  isActive && 'scale-105'
                 )}
               />
               <span className={cn(
-                'text-xs font-medium',
-                isActive && 'font-semibold'
+                'text-xs font-light',
+                isActive && 'font-normal'
               )}>
                 {item.label}
               </span>

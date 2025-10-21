@@ -1,12 +1,13 @@
 'use client';
 
 import { CategoryFilter } from '@/components/CategoryFilter';
+import { Header } from '@/components/Header';
 import { Navigation } from '@/components/Navigation';
 import { WonderCard } from '@/components/WonderCard';
 import { useFavorites } from '@/hooks/useFavorites';
 import { WonderCategory } from '@/lib/types';
 import { wondersData } from '@/lib/wonderData';
-import { Search, Sparkles } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useState } from 'react';
 
 export default function DiscoverPage() {
@@ -32,31 +33,10 @@ export default function DiscoverPage() {
     <>
       <div className="min-h-screen bg-white pb-24">
         {/* Header */}
-        <header className="sticky top-0 z-30 border-b border-border bg-white">
-          <div className="mx-auto max-w-7xl px-6 py-8">
-            <div className="mb-6">
-              <h1 className="text-2xl font-semibold text-foreground mb-1">WonderWorld</h1>
-              <p className="text-sm text-muted-foreground font-light">
-                Discover the world's most amazing places
-              </p>
-            </div>
-
-            {/* Search Bar */}
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search wonders, locations..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-lg border border-input bg-white py-3 pl-11 pr-4 text-sm font-light focus:border-foreground focus:outline-none transition-colors"
-              />
-            </div>
-          </div>
-        </header>
+        <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
         {/* Category Filter */}
-        <div className="sticky top-[164px] z-20 bg-white py-5 border-b border-border">
+        <div className="sticky top-[156px] z-20 bg-white/80 backdrop-blur-xl py-5 border-b border-border/40">
           <div className="mx-auto max-w-7xl px-6">
             <CategoryFilter
               categories={categories}

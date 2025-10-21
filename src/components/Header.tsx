@@ -1,6 +1,7 @@
 'use client';
 
-import { Search, Sparkles } from 'lucide-react';
+import { Search } from 'lucide-react';
+import Image from 'next/image';
 
 interface HeaderProps {
   searchQuery: string;
@@ -14,15 +15,22 @@ export function Header({ searchQuery, onSearchChange }: HeaderProps) {
         {/* Brand Section */}
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="rounded-2xl bg-gradient-to-br from-foreground via-foreground/90 to-foreground/70 p-3 shadow-lg ring-1 ring-foreground/10">
-              <Sparkles className="h-6 w-6 text-white" strokeWidth={2} />
+            <div className="relative h-14 w-14 flex items-center justify-center bg-white rounded-xl shadow-md ring-1 ring-border/20">
+              <Image
+                src="/generated/phoenix-logo.png"
+                alt="Phoenix Logo"
+                width={40}
+                height={40}
+                className="object-contain"
+                priority
+              />
             </div>
             <div>
               <h1 className="text-3xl font-semibold tracking-tight text-foreground mb-1 leading-none">
-                WonderWorld
+                Phoenix
               </h1>
               <p className="text-sm text-muted-foreground font-normal tracking-wide">
-                Discover the world's most amazing places
+                Rise from the ashes, build something extraordinary
               </p>
             </div>
           </div>

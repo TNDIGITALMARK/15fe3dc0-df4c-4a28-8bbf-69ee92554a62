@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Elegant Flora Boutique",
-  description: "Beautiful AI-powered website creation platform",
+  title: "WonderWorld - Discover Amazing Places",
+  description: "Explore the world's most breathtaking wonders with stunning photography, fascinating stories, and curated experiences.",
 };
 
 export default function RootLayout({

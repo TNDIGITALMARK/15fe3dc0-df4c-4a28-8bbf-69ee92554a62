@@ -1,37 +1,118 @@
-export const dynamic = 'force-dynamic'
+'use client';
 
-export default function Index() {
+import { CategoryFilter } from '@/components/CategoryFilter';
+import { Navigation } from '@/components/Navigation';
+import { WonderCard } from '@/components/WonderCard';
+import { useFavorites } from '@/hooks/useFavorites';
+import { WonderCategory } from '@/lib/types';
+import { wondersData } from '@/lib/wonderData';
+import { Search, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+
+export default function DiscoverPage() {
+  const [selectedCategory, setSelectedCategory] = useState<WonderCategory | 'All'>('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const { favorites, toggleFavorite, isFavorite, isLoaded } = useFavorites();
+
+  // Get unique categories
+  const categories = Array.from(new Set(wondersData.map((w) => w.category))) as WonderCategory[];
+
+  // Filter wonders
+  const filteredWonders = wondersData.filter((wonder) => {
+    const matchesCategory = selectedCategory === 'All' || wonder.category === selectedCategory;
+    const matchesSearch =
+      searchQuery === '' ||
+      wonder.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      wonder.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      wonder.description.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center max-w-2xl px-4">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your App</h1>
-        <p className="text-xl mb-6 text-gray-600">
-          This template is configured to be absolutely lenient - builds never fail on validation errors.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-left">
-          <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-            <h3 className="font-semibold text-green-800 mb-2">✅ Always Builds</h3>
-            <ul className="text-green-700 space-y-1">
-              <li>• TypeScript errors ignored</li>
-              <li>• ESLint warnings ignored</li>
-              <li>• Global error boundaries</li>
-              <li>• Asset type safety</li>
-            </ul>
+    <>
+      <div className="min-h-screen bg-background pb-24">
+        {/* Header */}
+        <header className="sticky top-0 z-30 border-b border-border bg-white/95 backdrop-blur-sm">
+          <div className="mx-auto max-w-7xl px-4 py-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Sparkles className="h-8 w-8 text-accent" />
+              <div>
+                <h1 className="text-3xl font-bold text-foreground">WonderWorld</h1>
+                <p className="text-sm text-muted-foreground">
+                  Discover the world's most amazing places
+                </p>
+              </div>
+            </div>
+
+            {/* Search Bar */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search wonders, locations..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full rounded-lg border border-input bg-background py-2.5 pl-10 pr-4 text-sm shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              />
+            </div>
           </div>
-          <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <h3 className="font-semibold text-blue-800 mb-2">🚀 Production Ready</h3>
-            <ul className="text-blue-700 space-y-1">
-              <li>• Next.js 15.5.2 App Router</li>
-              <li>• Vercel optimized</li>
-              <li>• SSR/SEO friendly</li>
-              <li>• Browser API protection</li>
-            </ul>
+        </header>
+
+        {/* Category Filter */}
+        <div className="sticky top-[140px] z-20 bg-background/95 backdrop-blur-sm py-4 border-b border-border">
+          <div className="mx-auto max-w-7xl px-4">
+            <CategoryFilter
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onSelectCategory={setSelectedCategory}
+            />
           </div>
         </div>
-        <p className="mt-6 text-gray-500">
-          Start building your amazing project here! This template will never fail builds due to validation errors.
-        </p>
+
+        {/* Main Content */}
+        <main className="mx-auto max-w-7xl px-4 py-8">
+          {/* Results Count */}
+          <div className="mb-6 flex items-center justify-between">
+            <p className="text-sm text-muted-foreground">
+              {filteredWonders.length} {filteredWonders.length === 1 ? 'wonder' : 'wonders'} found
+            </p>
+            {selectedCategory !== 'All' && (
+              <button
+                onClick={() => setSelectedCategory('All')}
+                className="text-sm text-primary hover:underline"
+              >
+                Clear filter
+              </button>
+            )}
+          </div>
+
+          {/* Wonders Grid */}
+          {filteredWonders.length > 0 ? (
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredWonders.map((wonder) => (
+                <WonderCard
+                  key={wonder.id}
+                  wonder={wonder}
+                  isFavorite={isLoaded && isFavorite(wonder.id)}
+                  onToggleFavorite={toggleFavorite}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <div className="mb-4 rounded-full bg-muted p-6">
+                <Search className="h-12 w-12 text-muted-foreground" />
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">No wonders found</h3>
+              <p className="text-muted-foreground">
+                Try adjusting your search or filter to find what you're looking for.
+              </p>
+            </div>
+          )}
+        </main>
       </div>
-    </div>
+
+      <Navigation />
+    </>
   );
 }

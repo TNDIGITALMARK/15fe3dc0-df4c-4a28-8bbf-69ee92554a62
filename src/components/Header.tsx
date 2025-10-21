@@ -9,19 +9,19 @@ interface HeaderProps {
 
 export function Header({ searchQuery, onSearchChange }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-30 border-b border-border/40 bg-white/80 backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-6 py-6">
+    <header className="sticky top-0 z-30 border-b border-border/30 bg-white/95 backdrop-blur-2xl">
+      <div className="mx-auto max-w-7xl px-6 py-8">
         {/* Brand Section */}
-        <div className="mb-6 flex items-start justify-between">
-          <div className="flex items-start gap-3">
-            <div className="rounded-xl bg-gradient-to-br from-foreground to-foreground/80 p-2.5 shadow-md">
-              <Sparkles className="h-5 w-5 text-white" />
+        <div className="mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="rounded-2xl bg-gradient-to-br from-foreground via-foreground/90 to-foreground/70 p-3 shadow-lg ring-1 ring-foreground/10">
+              <Sparkles className="h-6 w-6 text-white" strokeWidth={2} />
             </div>
             <div>
-              <h1 className="text-2xl font-semibold tracking-tight text-foreground mb-0.5">
+              <h1 className="text-3xl font-semibold tracking-tight text-foreground mb-1 leading-none">
                 WonderWorld
               </h1>
-              <p className="text-sm text-muted-foreground font-light">
+              <p className="text-sm text-muted-foreground font-normal tracking-wide">
                 Discover the world's most amazing places
               </p>
             </div>
@@ -30,13 +30,13 @@ export function Header({ searchQuery, onSearchChange }: HeaderProps) {
 
         {/* Search Bar */}
         <div className="relative group">
-          <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors group-focus-within:text-foreground" />
+          <Search className="absolute left-4 top-1/2 h-4.5 w-4.5 -translate-y-1/2 text-muted-foreground/70 transition-colors group-focus-within:text-foreground" strokeWidth={2} />
           <input
             type="text"
             placeholder="Search wonders, locations, experiences..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full rounded-xl border border-border/60 bg-white py-3.5 pl-11 pr-4 text-sm font-light shadow-sm focus:border-foreground/60 focus:outline-none focus:ring-4 focus:ring-foreground/5 transition-all"
+            className="w-full rounded-xl border border-border/50 bg-white/60 py-4 pl-12 pr-4 text-sm font-normal placeholder:text-muted-foreground/60 shadow-sm hover:border-border hover:bg-white focus:border-foreground/40 focus:bg-white focus:outline-none focus:ring-4 focus:ring-foreground/5 transition-all duration-200"
           />
         </div>
       </div>
